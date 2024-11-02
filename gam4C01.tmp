@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://m0a3fws6u32e"]
+[gd_scene load_steps=28 format=3 uid="uid://m0a3fws6u32e"]
 
 [ext_resource type="AudioStream" uid="uid://fpc51oca5uay" path="res://music/global/POL-king-of-coins-short.wav" id="1_ahx2e"]
 [ext_resource type="Texture2D" uid="uid://dynwokuvn7veb" path="res://Rocky Roads/Tilesets/tileset_water.png" id="1_islb4"]
@@ -18,8 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://duj0pnqdqjoqg" path="res://scenes/paused_menu.tscn" id="14_ibd1b"]
 [ext_resource type="PackedScene" uid="uid://8l7372lb6swv" path="res://scenes/player1.tscn" id="15_embei"]
 [ext_resource type="PackedScene" uid="uid://cfaxt05f75j0d" path="res://scenes/saw.tscn" id="15_qb1dx"]
-[ext_resource type="PackedScene" uid="uid://djl2rq08762mg" path="res://scenes/heart_p1.tscn" id="16_cxx2x"]
-[ext_resource type="PackedScene" uid="uid://cjbh3e4wru38f" path="res://scenes/heart_p2.tscn" id="17_qrn4x"]
+[ext_resource type="Texture2D" uid="uid://dbmmchm7xsb4x" path="res://Rocky Roads/Objects/heart.png" id="15_ypbyy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ivak"]
 texture = ExtResource("1_islb4")
@@ -315,16 +314,14 @@ layer_0/tile_data = PackedInt32Array(-7, 196608, 1, -6, 196608, 1, -5, 196608, 1
 stream = ExtResource("1_ahx2e")
 autoplay = true
 
-[node name="SharedCamera" type="Camera2D" parent="."]
-zoom = Vector2(3.5, 3.5)
-
 [node name="Player1" parent="." instance=ExtResource("15_embei")]
 position = Vector2(-95, -30)
 
 [node name="Camera2D" type="Camera2D" parent="Player1"]
 texture_filter = 1
 ignore_rotation = false
-zoom = Vector2(4, 4)
+enabled = false
+zoom = Vector2(3.5, 3.5)
 limit_smoothed = true
 
 [node name="Player2" parent="." instance=ExtResource("13_q50ib")]
@@ -333,7 +330,8 @@ position = Vector2(-65, -86)
 [node name="Camera2D" type="Camera2D" parent="Player2"]
 texture_filter = 1
 ignore_rotation = false
-zoom = Vector2(4, 4)
+enabled = false
+zoom = Vector2(3.5, 3.5)
 
 [node name="Enemy" parent="." instance=ExtResource("11_3kgsn")]
 position = Vector2(-32, -31)
@@ -374,23 +372,26 @@ position = Vector2(-92.75, -74)
 texture = ExtResource("7_06os1")
 hframes = 8
 
-[node name="HeartP11" parent="CanvasLayer" instance=ExtResource("16_cxx2x")]
-position = Vector2(-11, -76.25)
+[node name="Heart1" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(-33.5, -74.5)
+scale = Vector2(1.43115, 1.15625)
+texture = ExtResource("15_ypbyy")
+hframes = 3
 
-[node name="HeartP12" parent="CanvasLayer" instance=ExtResource("16_cxx2x")]
-position = Vector2(10.75, -76.5)
+[node name="Heart2" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(-12.25, -74.75)
+scale = Vector2(1.43115, 1.15625)
+texture = ExtResource("15_ypbyy")
+hframes = 3
 
-[node name="HeartP13" parent="CanvasLayer" instance=ExtResource("16_cxx2x")]
-position = Vector2(32.75, -77)
-
-[node name="HeartP21" parent="CanvasLayer" instance=ExtResource("17_qrn4x")]
-position = Vector2(105, -77.25)
-
-[node name="HeartP22" parent="CanvasLayer" instance=ExtResource("17_qrn4x")]
-position = Vector2(126.75, -77)
-
-[node name="HeartP23" parent="CanvasLayer" instance=ExtResource("17_qrn4x")]
-position = Vector2(149, -77.5)
+[node name="Heart3" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(9.5, -74.75)
+scale = Vector2(1.43115, 1.15625)
+texture = ExtResource("15_ypbyy")
+hframes = 3
 
 [node name="CoinsCollectedText" type="Label" parent="CanvasLayer"]
 modulate = Color(0, 0, 0, 1)
@@ -409,24 +410,6 @@ offset_top = -87.0
 offset_right = -74.75
 offset_bottom = -64.0
 text = ":"
-
-[node name="P1_label" type="Label" parent="CanvasLayer"]
-texture_filter = 1
-offset_left = -39.25
-offset_top = -87.5
-offset_right = -20.25
-offset_bottom = -64.5
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-text = "P1"
-
-[node name="P2_label" type="Label" parent="CanvasLayer"]
-texture_filter = 1
-offset_left = 76.5
-offset_top = -87.25
-offset_right = 95.5
-offset_bottom = -64.25
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-text = "P2"
 
 [node name="ZonaCaida" type="Area2D" parent="."]
 script = ExtResource("12_mmfny")
@@ -449,6 +432,9 @@ shape = SubResource("RectangleShape2D_r84a0")
 
 [node name="Saw" parent="." instance=ExtResource("15_qb1dx")]
 position = Vector2(-4, -101)
+
+[node name="SharedCamera" type="Camera2D" parent="."]
+zoom = Vector2(3.5, 3.5)
 
 [connection signal="body_entered" from="ZonaCaida" to="ZonaCaida" method="_on_body_entered"]
 [connection signal="body_entered" from="Spikes" to="Player1" method="_on_spikes_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://by7j76y14wul4"]
+[gd_scene load_steps=16 format=3 uid="uid://by7j76y14wul4"]
 
 [ext_resource type="Texture2D" uid="uid://dspf1x7ffeyuc" path="res://images/fondo_game.jpg" id="1_32pqu"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_qomtp"]
@@ -54,78 +54,11 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Slime:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_i2bbu"]
-resource_name = "Move_Slime"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Slime:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.433333, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1, 2, 4]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cgybi"]
 _data = {
 "Move": SubResource("Animation_i8qe4"),
-"Move_Slime": SubResource("Animation_i2bbu"),
 "RESET": SubResource("Animation_wwu3e")
-}
-
-[sub_resource type="Animation" id="Animation_fnepe"]
-resource_name = "Move"
-length = 1.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect/Slime:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.366667, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1, 2, 4]
-}
-
-[sub_resource type="Animation" id="Animation_od5bu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect/Slime:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3aih"]
-_data = {
-"Move": SubResource("Animation_fnepe"),
-"RESET": SubResource("Animation_od5bu")
 }
 
 [node name="Menu" type="Control"]
@@ -208,7 +141,7 @@ scale = Vector2(5.35, 4.75)
 texture = ExtResource("3_5dibc")
 hframes = 5
 vframes = 2
-frame = 1
+frame = 4
 
 [node name="HeartP2" parent="ColorRect" instance=ExtResource("4_mxf45")]
 position = Vector2(209, 90)
@@ -220,10 +153,9 @@ scale = Vector2(8, 8)
 
 [node name="Chicken" type="Sprite2D" parent="ColorRect"]
 texture_filter = 1
-position = Vector2(196, 303)
+position = Vector2(218.155, 212.435)
 scale = Vector2(6.11531, 5.53532)
 texture = ExtResource("5_7bau1")
-flip_h = true
 hframes = 7
 vframes = 2
 
@@ -238,11 +170,6 @@ libraries = {
 "": SubResource("AnimationLibrary_cgybi")
 }
 autoplay = "Move"
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_p3aih")
-}
 
 [connection signal="pressed" from="ColorRect/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

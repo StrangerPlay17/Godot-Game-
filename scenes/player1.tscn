@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://8l7372lb6swv"]
+[gd_scene load_steps=12 format=3 uid="uid://8l7372lb6swv"]
 
 [ext_resource type="Script" path="res://scripts/player_2d.gd" id="1_ea3li"]
 [ext_resource type="Texture2D" uid="uid://t2vomxq61g1f" path="res://Rocky Roads/Enemies/slime_red.png" id="1_ws2lo"]
+[ext_resource type="AudioStream" uid="uid://seu8hxtd71jk" path="res://music/sounds/jump.mp3" id="3_wukml"]
+[ext_resource type="AudioStream" uid="uid://b3tdmyhtw0gb8" path="res://music/sounds/life_sound.mp3" id="4_nflko"]
+[ext_resource type="AudioStream" uid="uid://djwl1ppynevpa" path="res://music/sounds/death_sound.mp3" id="5_l1oxd"]
 
 [sub_resource type="Animation" id="Animation_kduau"]
 resource_name = "Idle"
@@ -50,8 +53,25 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
 
+[sub_resource type="Animation" id="Animation_17n2g"]
+resource_name = "Dead"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.06667, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 4, 6]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pla7p"]
 _data = {
+"Dead": SubResource("Animation_17n2g"),
 "Idle": SubResource("Animation_kduau"),
 "RESET": SubResource("Animation_k3f0q"),
 "Walk": SubResource("Animation_3lch4")
@@ -80,3 +100,14 @@ speed_scale = 2.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 4.5)
 shape = SubResource("RectangleShape2D_n6dbj")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wukml")
+volume_db = -11.277
+
+[node name="LifeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nflko")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_l1oxd")
+volume_db = 11.277

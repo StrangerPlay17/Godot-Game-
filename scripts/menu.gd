@@ -1,5 +1,10 @@
 extends Control
 
+func _ready() -> void:
+	$AnimationPlayer.play("Move") # Animation of Chicken
+	$AnimationPlayer2.play("Move") # Animation of Slime
+	
+
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://game.tscn")

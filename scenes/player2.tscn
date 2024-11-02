@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfwo3cf4shbm6"]
+[gd_scene load_steps=12 format=3 uid="uid://dncapflbstwx5"]
 
 [ext_resource type="Script" path="res://scripts/player2_2d.gd" id="1_onk6m"]
 [ext_resource type="Texture2D" uid="uid://bivil4u1vcje5" path="res://Rocky Roads/Enemies/chicken.png" id="2_hf4ad"]
+[ext_resource type="AudioStream" uid="uid://djwl1ppynevpa" path="res://music/sounds/death_sound.mp3" id="3_x3knm"]
+[ext_resource type="AudioStream" uid="uid://seu8hxtd71jk" path="res://music/sounds/jump.mp3" id="4_c3848"]
+[ext_resource type="AudioStream" uid="uid://b3tdmyhtw0gb8" path="res://music/sounds/life_sound.mp3" id="5_r6c7g"]
 
-[sub_resource type="Animation" id="Animation_xbd67"]
+[sub_resource type="Animation" id="Animation_kduau"]
 resource_name = "Idle"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -18,7 +21,7 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_23c0b"]
+[sub_resource type="Animation" id="Animation_k3f0q"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -33,9 +36,9 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_0dvhx"]
+[sub_resource type="Animation" id="Animation_3lch4"]
 resource_name = "Walk"
-length = 1.4
+length = 1.1667
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -44,42 +47,67 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.3, 0.466667, 0.633333, 0.8, 0.966667, 1.13333, 1.3),
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333, 0.666667, 0.8, 0.933333, 1.06667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 7, 8, 9, 10, 11, 12, 13]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_aekbd"]
-_data = {
-"Idle": SubResource("Animation_xbd67"),
-"RESET": SubResource("Animation_23c0b"),
-"Walk": SubResource("Animation_0dvhx")
+[sub_resource type="Animation" id="Animation_suykt"]
+resource_name = "Dead"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 13, 9, 10]
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugnty"]
-size = Vector2(15, 13)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pla7p"]
+_data = {
+"Dead": SubResource("Animation_suykt"),
+"Idle": SubResource("Animation_kduau"),
+"RESET": SubResource("Animation_k3f0q"),
+"Walk": SubResource("Animation_3lch4")
+}
 
-[node name="Player2" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6dbj"]
+size = Vector2(15, 14)
 
-[node name="Player2" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D"]
+texture_filter = 1
 script = ExtResource("1_onk6m")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player2"]
-texture_filter = 1
-position = Vector2(-0.642856, -1.5)
-scale = Vector2(0.915179, 0.84375)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.25, -2.625)
+scale = Vector2(0.921875, 0.914063)
 texture = ExtResource("2_hf4ad")
 hframes = 7
 vframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_aekbd")
+"": SubResource("AnimationLibrary_pla7p")
 }
-autoplay = "Walk"
-speed_scale = 2.5
+speed_scale = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
-position = Vector2(-1.5, 5.5)
-shape = SubResource("RectangleShape2D_ugnty")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 5)
+shape = SubResource("RectangleShape2D_n6dbj")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x3knm")
+volume_db = 11.889
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_c3848")
+volume_db = -11.377
+
+[node name="LifeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_r6c7g")

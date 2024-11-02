@@ -41,7 +41,7 @@ func turn():
 	# Si el raycast frontal detecta al jugador
 	elif $RayCastWall2D.is_colliding():
 		var collider = $RayCastWall2D.get_collider()
-		if collider != null and collider.name == "Player1":
+		if collider != null and collider.name == "Player1" or collider.name == "Player2":
 			player_detected = true # Marca al jugador como detectado
 			speed += 45 # Persigue mas rapido al jugador
 		else: # En caso contrario, valida si el enemigo choca con una pared
@@ -51,7 +51,7 @@ func turn():
 	# Si el raycast trasero detecta al jugador
 	elif $RayCastBack2D.is_colliding():
 		var back_collider = $RayCastBack2D.get_collider()
-		if back_collider != null and back_collider.name == "Player1":
+		if back_collider != null and back_collider.name == "Player1" or back_collider.name == "Player2":
 			player_detected = true # Marca al jugador como detectado
 			speed += 45 #Persigue mas rapido al jugador
 			moving_left = !moving_left # Cambia de dirección hacia el jugador
@@ -62,5 +62,8 @@ func turn():
 # Al tocar el enemigo, se llama a la función "loseLife" en player
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player1":
+		body._loseLife(position.x) # Llama a la función _loseLife() de Player1 
+								   # Pasando la "posicion.x" del enemigo
+	if body.name == "Player2":
 		body._loseLife(position.x) # Llama a la función _loseLife() de Player1 
 								   # Pasando la "posicion.x" del enemigo

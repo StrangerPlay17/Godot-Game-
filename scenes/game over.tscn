@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/victory.gd" id="1_77jnu"]
 [ext_resource type="Texture2D" uid="uid://dspf1x7ffeyuc" path="res://images/fondo_game.jpg" id="2_ly3yb"]
-[ext_resource type="AudioStream" uid="uid://cyp55ytt70ikh" path="res://music/global/POL-test-your-skills-short.wav" id="3_x1cnm"]
+[ext_resource type="AudioStream" uid="uid://dmut3nqkf8275" path="res://music/global/end_song.mp3" id="3_763bj"]
 
 [sub_resource type="GDScript" id="GDScript_mjpdc"]
 
@@ -95,8 +95,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_x1cnm")
-volume_db = -16.289
+stream = ExtResource("3_763bj")
+volume_db = 11.277
 autoplay = true
 
 [connection signal="pressed" from="ColorRect/VBoxContainer/Play" to="." method="_on_play_pressed"]

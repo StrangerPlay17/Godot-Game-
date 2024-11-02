@@ -2,15 +2,25 @@ extends CanvasLayer
 
 var coins = 0 # Referencia a las monedas en la interfaz <-
 # Referencia a los corazones en la interfaz <-
+# Hearts Player1
 var heart1
 var heart2
 var heart3
+# Hearts Player2
+var heart4
+var heart5
+var heart6
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	heart1 = get_node("Heart1")
-	heart2 = get_node("Heart2")
-	heart3 = get_node("Heart3")
+	# Player1 Hearts
+	heart1 = get_node("HeartP11")
+	heart2 = get_node("HeartP12")
+	heart3 = get_node("HeartP13")
+	# Playr2 Hearts
+	heart4 = get_node("HeartP21")
+	heart5 = get_node("HeartP22")
+	heart6 = get_node("HeartP23")
 	
 	#var coinNode = get_tree().get_root().find_node("Coin2D", true, false)
 	for child in get_tree().get_nodes_in_group("coins"):  # Itera sobre todos los nodos "Coins" en el grupo "coins"
@@ -27,10 +37,24 @@ func handleCoinCollected(): # Funcion para suma de monedas
 	if coins == 3:
 		get_tree().change_scene_to_file("res://scenes/victory.tscn")
 
-func handleHearts(lifes): # Muestra las vidas que le quedan al player <-
+func handleHeartsPlayer1(lifes): # Muestra las vidas que le quedan al player1 <-
 	if lifes == 2:
 		heart3.visible = false
 	elif lifes == 1:
 		heart2.visible = false
 		heart3.visible = false
-		
+	elif lifes == 0:
+		heart1.visible = false
+		heart2.visible = false
+		heart3.visible = false
+
+func handleHeartsPlayer2(lifes): # Muestra las vidas que le quedan al player2 <-
+	if lifes == 2:
+		heart6.visible = false
+	elif lifes == 1:
+		heart5.visible = false
+		heart6.visible = false
+	elif lifes == 0:
+		heart4.visible = false
+		heart5.visible = false
+		heart6.visible = false

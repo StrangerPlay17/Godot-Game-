@@ -5,11 +5,19 @@ const maxSpeed = 50.0
 const jumpHeight = -300.0
 const gravity = 15.0
 var lifes = 3 
+signal out_of_lives  
+#Variable de estado para controlar si el jugador está muerto
+var is_dead = false
 
 @onready var sprite = $Sprite2D # Orientación del jugador (izquierda o derecha)
 @onready var animationPlayer = $AnimationPlayer # Animaciones del jugador (quieto y caminando)
 
+func _ready():
+	add_to_group("player1")  # Agrega al jugador a un grupo "player1"
+
 func _physics_process(_delta: float) -> void:
+	if is_dead:
+		return  # Si el jugador está muerto, no procesar el movimiento
 	velocity.y += gravity # Aplica la gravedad en el eje y
 	
 	var friction = false
@@ -33,6 +41,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if is_on_floor():
 		if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_up"):
+			$JumpSound.play()
 			velocity.y = jumpHeight # Hace el salto en el eje +y 
 		
 		if friction == true: # Si el jugador está quieto 
@@ -62,13 +71,20 @@ func _loseLife(enemyposx):
 		velocity.x = 400
 		velocity.y = -100
 	lifes -= 1 # Se pierde una vida
+	$LifeSound.play()
 	print("Vidas restantes: "+str(lifes))
 	# Encuentra el nodo "CanvasLayer" desde el nodo raíz de la escena
 	var canvas_layer = get_tree().root.get_node("Game/CanvasLayer")
-	canvas_layer.handleHearts(lifes) # Llama a la función "handlehearts" con la cantidad de vidas actuales <-
+	canvas_layer.handleHeartsPlayer1(lifes) # Llama a la función "handlehearts" con la cantidad de vidas actuales <-
 	
 	if lifes <= 0: # Si las vidas del jugador se agotan
-		call_deferred("reload_scene")  # Llama a la función de recarga de la escena
+		is_dead = true  # Marca al jugador como muerto
+		animationPlayer.play("Dead")
+		$DeathSound.play()
+		await get_tree().create_timer(2.3).timeout  # Demora de la animación de muerte
+		emit_signal("out_of_lives", self)  # Notifica que el jugador se quedó sin vidas
+		#call_deferred("reload_scene")  # Llama a la función de recarga de la escena
+
 
 # Función para recargar la escena
 func reload_scene() -> void: # Carga una nueva escena 
