@@ -1,0 +1,103 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6um4aay1vx60"]
+
+[ext_resource type="Texture2D" uid="uid://dspf1x7ffeyuc" path="res://images/fondo_game.jpg" id="1_32pqu"]
+[ext_resource type="Script" path="res://scripts/victory.gd" id="1_ao7cw"]
+[ext_resource type="AudioStream" uid="uid://cyp55ytt70ikh" path="res://music/global/POL-test-your-skills-short.wav" id="3_vw502"]
+
+[sub_resource type="GDScript" id="GDScript_mjpdc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm7em"]
+script = SubResource("GDScript_mjpdc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6po7"]
+bg_color = Color(0.597437, 0.44465, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhr5r"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hafb5"]
+bg_color = Color(0.596078, 0.443137, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjqpc"]
+bg_color = Color(0.643137, 0.0235294, 0.0235294, 1)
+
+[node name="Victory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ao7cw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.455817, 0.455817, 0.455817, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+material = SubResource("ShaderMaterial_sm7em")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_32pqu")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -64.0
+offset_right = 211.0
+offset_bottom = 234.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 45
+
+[node name="Play" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 13
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_b6po7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bhr5r")
+text = "Volver a jugar"
+
+[node name="Quit" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 13
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_hafb5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hjqpc")
+text = "Salir "
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+offset_left = 311.0
+offset_top = 59.0
+offset_right = 851.0
+offset_bottom = 210.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.619608, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+text = "Victory!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vw502")
+volume_db = -16.289
+autoplay = true
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

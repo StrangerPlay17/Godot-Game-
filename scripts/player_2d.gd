@@ -4,6 +4,7 @@ const moveSpeed = 25.0
 const maxSpeed = 50.0
 const jumpHeight = -300.0
 const gravity = 15.0
+var lifes = 3 
 
 @onready var sprite = $Sprite2D # Orientación del jugador (izquierda o derecha)
 @onready var animationPlayer = $AnimationPlayer # Animaciones del jugador (quieto y caminando)
@@ -43,6 +44,37 @@ func _physics_process(_delta: float) -> void:
 	
 	# Aplica el movimiento usando la propiedad `velocity` directamente
 	move_and_slide()
+
+# Funcion en caso de morir en puas <-
+func _on_spikes_body_entered(body):
+	if body.get_name() == "Player1": # Valida si fue el player el que se cayo del mapa <-
+		print("Se ha pinchao el player1")
+		body._loseLife(position.x)
+
+# Funcion que baja la vida del jugador
+func _loseLife(enemyposx):
+	print("El player1 ha perdido 1 vida")
+	# El jugador recibe un "emepujon" por el daño recibido 
+	if position.x < enemyposx: # Si el player esta a la izquierda del enemigo
+		velocity.x = -400 # Enpujon del player en x
+		velocity.y = -100 # Enpujon del player en y
+	else:  #Si el player esta a la derecha del enemigo 
+		velocity.x = 400
+		velocity.y = -100
+	lifes -= 1 # Se pierde una vida
+	print("Vidas restantes: "+str(lifes))
+	# Encuentra el nodo "CanvasLayer" desde el nodo raíz de la escena
+	var canvas_layer = get_tree().root.get_node("Game/CanvasLayer")
+	canvas_layer.handleHearts(lifes) # Llama a la función "handlehearts" con la cantidad de vidas actuales <-
+	
+	if lifes <= 0: # Si las vidas del jugador se agotan
+		call_deferred("reload_scene")  # Llama a la función de recarga de la escena
+
+# Función para recargar la escena
+func reload_scene() -> void: # Carga una nueva escena 
+	get_tree().change_scene_to_file("res://scenes/game over.tscn")
+	#get_tree().reload_current_scene()
+	
 
 '''
 		

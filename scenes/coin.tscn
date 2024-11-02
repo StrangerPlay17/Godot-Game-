@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2oii50wup524"]
+[gd_scene load_steps=8 format=3 uid="uid://c2oii50wup524"]
 
 [ext_resource type="Texture2D" uid="uid://bxutxe2vk1pqu" path="res://Rocky Roads/Objects/coin_gold.png" id="1_fbrx1"]
 [ext_resource type="Script" path="res://scripts/coin_2d.gd" id="1_s41qp"]
+[ext_resource type="AudioStream" uid="uid://cs7m1c4082v56" path="res://music/sounds/toggle_002.ogg" id="3_ji135"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkrhh"]
 
@@ -61,5 +62,9 @@ libraries = {
 "": SubResource("AnimationLibrary_veirt")
 }
 autoplay = "Coin"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Coin2D"]
+stream = ExtResource("3_ji135")
+volume_db = -6.265
 
 [connection signal="body_entered" from="Coin2D" to="Coin2D" method="_on_body_entered"]

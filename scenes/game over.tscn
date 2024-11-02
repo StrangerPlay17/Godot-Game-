@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6um4aay1vx60"]
+[gd_scene load_steps=10 format=3 uid="uid://bjk1n7mv0plms"]
 
-[ext_resource type="Texture2D" uid="uid://dspf1x7ffeyuc" path="res://images/fondo_game.jpg" id="1_32pqu"]
-[ext_resource type="Script" path="res://scripts/menu.gd" id="1_qomtp"]
-[ext_resource type="AudioStream" uid="uid://0afm5mqxa53n" path="res://music/global/POL-star-way-short.wav" id="3_hghlj"]
+[ext_resource type="Script" path="res://scripts/victory.gd" id="1_77jnu"]
+[ext_resource type="Texture2D" uid="uid://dspf1x7ffeyuc" path="res://images/fondo_game.jpg" id="2_ly3yb"]
+[ext_resource type="AudioStream" uid="uid://cyp55ytt70ikh" path="res://music/global/POL-test-your-skills-short.wav" id="3_x1cnm"]
 
 [sub_resource type="GDScript" id="GDScript_mjpdc"]
 
@@ -21,14 +21,14 @@ bg_color = Color(0.596078, 0.443137, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjqpc"]
 bg_color = Color(0.643137, 0.0235294, 0.0235294, 1)
 
-[node name="Menu" type="Control"]
+[node name="Victory" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qomtp")
+script = ExtResource("1_77jnu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -47,7 +47,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_32pqu")
+texture = ExtResource("2_ly3yb")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
@@ -71,7 +71,7 @@ theme_override_constants/h_separation = 13
 theme_override_font_sizes/font_size = 50
 theme_override_styles/hover = SubResource("StyleBoxFlat_b6po7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_bhr5r")
-text = "Jugar"
+text = "Volver a jugar"
 
 [node name="Quit" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -83,20 +83,20 @@ text = "Salir "
 
 [node name="Label" type="Label" parent="ColorRect"]
 layout_mode = 1
-offset_left = 313.0
-offset_top = 21.0
-offset_right = 853.0
-offset_bottom = 172.0
+offset_left = 323.0
+offset_top = 60.0
+offset_right = 863.0
+offset_bottom = 211.0
 theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.619608, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 80
-text = "Slime Rocket"
+text = "Game Over..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_hghlj")
-volume_db = -11.277
+stream = ExtResource("3_x1cnm")
+volume_db = -16.289
 autoplay = true
 
 [connection signal="pressed" from="ColorRect/VBoxContainer/Play" to="." method="_on_play_pressed"]
