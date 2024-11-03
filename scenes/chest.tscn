@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://7jqv2qf7f8p3"]
+
+[ext_resource type="Script" path="res://scripts/chest_2d.gd" id="1_ibwke"]
+[ext_resource type="Texture2D" uid="uid://cp2ptp4yqm3kv" path="res://Rocky Roads/Objects/treasure_chest.png" id="2_q8jx4"]
+[ext_resource type="AudioStream" uid="uid://ceegq4fgsowb0" path="res://music/sounds/confirmation_002.ogg" id="3_lvi7f"]
+[ext_resource type="Texture2D" uid="uid://cnt4d5xoymqox" path="res://Rocky Roads/Objects/gem.png" id="4_kbx7u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcfds"]
+size = Vector2(26, 16)
+
+[sub_resource type="Animation" id="Animation_iekvp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chest2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yflx0"]
+resource_name = "Chest"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chest2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_veirt"]
+_data = {
+"Chest": SubResource("Animation_yflx0"),
+"RESET": SubResource("Animation_iekvp")
+}
+
+[node name="Chest" type="Node2D"]
+
+[node name="Chest2D" type="Area2D" parent="."]
+script = ExtResource("1_ibwke")
+
+[node name="Chest2D" type="Sprite2D" parent="Chest2D"]
+texture_filter = 1
+texture = ExtResource("2_q8jx4")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chest2D"]
+position = Vector2(-2, 8)
+shape = SubResource("RectangleShape2D_qcfds")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Chest2D"]
+libraries = {
+"": SubResource("AnimationLibrary_veirt")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Chest2D"]
+stream = ExtResource("3_lvi7f")
+volume_db = 3.64
+
+[node name="Gem2D" type="Sprite2D" parent="Chest2D"]
+visible = false
+texture_filter = 1
+position = Vector2(-2, 2.38419e-07)
+scale = Vector2(1.1875, 1.21875)
+texture = ExtResource("4_kbx7u")
+hframes = 5
+
+[connection signal="body_entered" from="Chest2D" to="Chest2D" method="_on_body_entered"]

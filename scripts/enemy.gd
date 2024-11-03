@@ -4,6 +4,7 @@ var gravity = 10
 var speed = 25
 var moving_left = true
 var player_detected = false # Para indicar si se ha detectado al jugador
+var eliminated = false
 
 # Hace caminar al enemigo iniciando el script con su animación
 func _ready() -> void:
@@ -15,6 +16,8 @@ func _process(delta: float) -> void:
 	turn()
 
 func move_character():
+	if eliminated: # Si el enemigo murio, dejar de producir movimiento
+		return
 	velocity.y += gravity
 	if player_detected: # Si el jugador es detectado
 		# Persigue al jugador
@@ -61,9 +64,28 @@ func turn():
 
 # Al tocar el enemigo, se llama a la función "loseLife" en player
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "Player1":
-		body._loseLife(position.x) # Llama a la función _loseLife() de Player1 
-								   # Pasando la "posicion.x" del enemigo
-	if body.name == "Player2":
-		body._loseLife(position.x) # Llama a la función _loseLife() de Player1 
-								   # Pasando la "posicion.x" del enemigo
+	print("El enemigo te golpeo")
+	if body.name == "Player1" or body.name == "Player2":
+		if eliminated == false: # Si el enemigo murio, no puede golpear
+			$AnimationPlayer.play("Attack") # Animacion de golpe
+			$Hit2D.visible = true  # Activa el sprite Hit2D para que sea visible
+			body._loseLife(position.x)
+			await get_tree().create_timer(0.8).timeout # Espera al terminar la animacion para ocultar el hit
+			$Hit2D.visible = false  # Oculta el sprite Hit2D 
+			$AnimationPlayer.play("Walk") # El enemigo vuelve a caminar luego de golpear
+			
+			
+
+# Al tocar al enemigo por "encima" el enemigo muere
+func _on_head_area_body_entered(body: Node2D) -> void:
+	print("Pisaste al enemigo")
+	if body.name == "Player1" or body.name == "Player2":
+		eliminated = true
+		die() # El enemigo muere
+		body.velocity.y = -200  # Rebote del jugador hacia arriba
+func die():
+	$AnimationPlayer.play("Death") 
+	$LifeSound.play()
+	await get_tree().create_timer(1).timeout
+	queue_free()  # Elimina al enemigo
+	eliminated = false

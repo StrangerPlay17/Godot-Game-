@@ -6,6 +6,22 @@
 [ext_resource type="AudioStream" uid="uid://seu8hxtd71jk" path="res://music/sounds/jump.mp3" id="4_c3848"]
 [ext_resource type="AudioStream" uid="uid://b3tdmyhtw0gb8" path="res://music/sounds/life_sound.mp3" id="5_r6c7g"]
 
+[sub_resource type="Animation" id="Animation_suykt"]
+resource_name = "Dead"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 13, 9, 10]
+}
+
 [sub_resource type="Animation" id="Animation_kduau"]
 resource_name = "Idle"
 tracks/0/type = "value"
@@ -51,22 +67,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 7, 8, 9, 10, 11, 12, 13]
-}
-
-[sub_resource type="Animation" id="Animation_suykt"]
-resource_name = "Dead"
-length = 2.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 13, 9, 10]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pla7p"]

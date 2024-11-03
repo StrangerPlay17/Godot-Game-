@@ -23,11 +23,14 @@ func _ready():
 	heart6 = get_node("HeartP23")
 	
 	#var coinNode = get_tree().get_root().find_node("Coin2D", true, false)
-	for child in get_tree().get_nodes_in_group("coins"):  # Itera sobre todos los nodos "Coins" en el grupo "coins"
+	for coin in get_tree().get_nodes_in_group("coins"):  # Itera sobre todos los nodos "Coins" en el grupo "coins"
 		#print("Nodo Coin2D encontrado: ", child)
-		child.connect("coinCollected", handleCoinCollected, 0)
+		coin.connect("coinCollected", handleCoinCollected, 0)
+	for chest in get_tree().get_nodes_in_group("chests"):  # Itera sobre todos los nodos en el grupo "chest"
+		#print("Nodo Coin2D encontrado: ", child)
+		chest.connect("chestCollected", handleChestCollected, 0)
 	
-	$CoinsCollectedText.text = str(coins)
+	$CoinsCollectedText.text = str(coins) # Valor por defecto en coins impreso
 
 func handleCoinCollected(): # Funcion para suma de monedas
 	print("Coin Collected")
@@ -35,6 +38,14 @@ func handleCoinCollected(): # Funcion para suma de monedas
 	$CoinsCollectedText.text = str(coins)
 	# Al recoger 3 monedas el nivel termina
 	if coins == 3:
+		get_tree().change_scene_to_file("res://scenes/victory.tscn")
+
+func handleChestCollected(): # Funcion para recoleccion de chest
+	print("Chest Collected")
+	coins += 3
+	$CoinsCollectedText.text = str(coins)
+	# Al recoger 10 monedas el nivel termina
+	if coins == 10:
 		get_tree().change_scene_to_file("res://scenes/victory.tscn")
 
 func handleHeartsPlayer1(lifes): # Muestra las vidas que le quedan al player1 <-

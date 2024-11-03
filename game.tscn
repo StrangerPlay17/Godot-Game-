@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://m0a3fws6u32e"]
+[gd_scene load_steps=30 format=3 uid="uid://m0a3fws6u32e"]
 
 [ext_resource type="AudioStream" uid="uid://fpc51oca5uay" path="res://music/global/POL-king-of-coins-short.wav" id="1_ahx2e"]
 [ext_resource type="Texture2D" uid="uid://dynwokuvn7veb" path="res://Rocky Roads/Tilesets/tileset_water.png" id="1_islb4"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cfaxt05f75j0d" path="res://scenes/saw.tscn" id="15_qb1dx"]
 [ext_resource type="PackedScene" uid="uid://djl2rq08762mg" path="res://scenes/heart_p1.tscn" id="16_cxx2x"]
 [ext_resource type="PackedScene" uid="uid://cjbh3e4wru38f" path="res://scenes/heart_p2.tscn" id="17_qrn4x"]
+[ext_resource type="PackedScene" uid="uid://7jqv2qf7f8p3" path="res://scenes/chest.tscn" id="21_1lfak"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ivak"]
 texture = ExtResource("1_islb4")
@@ -346,6 +347,9 @@ position = Vector2(-65, -20)
 
 [node name="Coin3" parent="." instance=ExtResource("10_4nj3n")]
 position = Vector2(-125, -45)
+
+[node name="Chest" parent="." instance=ExtResource("21_1lfak")]
+position = Vector2(-149, -96)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 offset = Vector2(450, 375)
