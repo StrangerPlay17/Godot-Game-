@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/cannon.png-64349bcf5c8c674704bf775d981ccc91.c
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

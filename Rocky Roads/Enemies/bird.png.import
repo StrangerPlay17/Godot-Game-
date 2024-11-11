@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/bird.png-4e3ca8c9377559f5d4621a201d939b9a.cte
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

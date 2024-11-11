@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/propeller.png-56d05d182237ab4652cbe6f5979af0e
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

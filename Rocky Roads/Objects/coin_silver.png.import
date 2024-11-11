@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/coin_silver.png-c016044f17e69479e01cd98e871a1
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

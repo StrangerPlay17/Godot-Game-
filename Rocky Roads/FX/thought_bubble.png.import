@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/thought_bubble.png-1f7b847df5b1c93521b86c12cc
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

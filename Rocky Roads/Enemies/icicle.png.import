@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/icicle.png-851da6ffb93d1072b6240319e65d1603.c
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

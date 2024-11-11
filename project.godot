@@ -14,6 +14,10 @@ config/name="Plataforms 2D"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DataDoors="*res://scripts/DataDoors.gd"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

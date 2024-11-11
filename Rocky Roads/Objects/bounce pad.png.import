@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/bounce pad.png-1c11d3049bc65bd026411f5fb5ccd9
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

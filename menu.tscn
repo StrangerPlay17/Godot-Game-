@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://by7j76y14wul4"]
+[gd_scene load_steps=23 format=3 uid="uid://by7j76y14wul4"]
 
 [ext_resource type="Texture2D" uid="uid://dspf1x7ffeyuc" path="res://images/fondo_game.jpg" id="1_32pqu"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_qomtp"]
@@ -12,11 +12,20 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sm7em"]
 script = SubResource("GDScript_mjpdc")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nshci"]
+bg_color = Color(0.762881, 0.559974, 0.0752668, 0.878431)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6po7"]
 bg_color = Color(0.597437, 0.44465, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhr5r"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kuw4j"]
+bg_color = Color(0.764706, 0.560784, 0.0745098, 0.878431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6b7k"]
+bg_color = Color(0.764706, 0.560784, 0.0745098, 0.878431)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hafb5"]
 bg_color = Color(0.596078, 0.443137, 0, 1)
@@ -176,14 +185,25 @@ theme_override_constants/separation = 45
 layout_mode = 2
 theme_override_constants/h_separation = 13
 theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_nshci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_b6po7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_bhr5r")
 text = "Jugar"
+
+[node name="Tutorial" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 13
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_kuw4j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b6po7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bhr5r")
+text = "Tutorial"
 
 [node name="Quit" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 13
 theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_l6b7k")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hafb5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hjqpc")
 text = "Salir "
@@ -245,4 +265,5 @@ libraries = {
 }
 
 [connection signal="pressed" from="ColorRect/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

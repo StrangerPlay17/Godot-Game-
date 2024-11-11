@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/cannon_fire_smoke.png-6c6d53a0af9af2e333a2e72
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

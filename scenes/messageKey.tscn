@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu6e61j1hh2go"]
+
+[ext_resource type="Texture2D" uid="uid://cerngpvtulay3" path="res://Rocky Roads/Objects/sign.png" id="1_5km3g"]
+[ext_resource type="Script" path="res://scenes/mesage_key.gd" id="1_u441n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmcn3"]
+
+[node name="MessageKey" type="Node2D"]
+
+[node name="mesageKey" type="Area2D" parent="."]
+position = Vector2(-1, -17)
+script = ExtResource("1_u441n")
+
+[node name="Sign" type="Sprite2D" parent="mesageKey"]
+texture = ExtResource("1_5km3g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mesageKey"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_gmcn3")
+
+[connection signal="body_entered" from="mesageKey" to="mesageKey" method="_on_body_entered"]
+[connection signal="body_exited" from="mesageKey" to="mesageKey" method="_on_body_exited"]
