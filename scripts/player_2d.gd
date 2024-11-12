@@ -70,6 +70,8 @@ func _loseLife(enemyposx):
 	print("Vidas restantes: "+str(lifes))
 	# Encuentra el nodo "CanvasLayer" desde el nodo raíz de la escena
 	var canvas_layer = get_tree().root.get_node("GameTutorial/CanvasLayer")
+	if canvas_layer == null:
+		canvas_layer = get_tree().root.get_node("Game/CanvasLayer")
 	canvas_layer.handleHeartsPlayer1(lifes) # Llama a la función "handlehearts" con la cantidad de vidas actuales <-
 	
 	if lifes <= 0: # Si las vidas del jugador se agotan

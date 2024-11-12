@@ -56,7 +56,7 @@ func turn():
 		var back_collider = $RayCastBack2D.get_collider()
 		if back_collider != null and back_collider.name == "Player1" or back_collider.name == "Player2":
 			player_detected = true # Marca al jugador como detectado
-			speed += 25 #Persigue mas rapido al jugador
+			speed += 105 #Persigue mas rapido al jugador
 			moving_left = !moving_left # Cambia de dirección hacia el jugador
 			scale.x = -scale.x # Gira al enemigo hacia el jugador
 	else:

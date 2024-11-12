@@ -592,6 +592,7 @@ scale = Vector2(1.3418, 1)
 texture = ExtResource("2_donrr")
 
 [node name="Trees" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(562.25, -64)
 scale = Vector2(1.34961, 1)
 texture = ExtResource("4_lql4x")
@@ -653,6 +654,7 @@ zoom = Vector2(4, 4)
 position = Vector2(446, -91)
 
 [node name="Key" parent="." instance=ExtResource("18_8iwp8")]
+texture_filter = 1
 position = Vector2(159, -120)
 
 [node name="Coin" parent="." instance=ExtResource("13_6x1p2")]
