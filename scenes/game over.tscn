@@ -71,7 +71,15 @@ theme_override_constants/h_separation = 13
 theme_override_font_sizes/font_size = 50
 theme_override_styles/hover = SubResource("StyleBoxFlat_b6po7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_bhr5r")
-text = "Volver a jugar"
+text = "Seguir jugando"
+
+[node name="Tutorial" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 13
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_b6po7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bhr5r")
+text = "Tutorial"
 
 [node name="Quit" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -100,4 +108,5 @@ volume_db = 11.277
 autoplay = true
 
 [connection signal="pressed" from="ColorRect/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

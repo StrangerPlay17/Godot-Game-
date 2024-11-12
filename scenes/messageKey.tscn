@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cu6e61j1hh2go"]
 
 [ext_resource type="Texture2D" uid="uid://cerngpvtulay3" path="res://Rocky Roads/Objects/sign.png" id="1_5km3g"]
-[ext_resource type="Script" path="res://scenes/mesage_key.gd" id="1_u441n"]
+[ext_resource type="Script" path="res://scripts/mesage_key.gd" id="1_u441n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmcn3"]
 
