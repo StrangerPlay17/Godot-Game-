@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/bat.png-09e03a6f4ae38e78f7e9db457a4e2203.ctex
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

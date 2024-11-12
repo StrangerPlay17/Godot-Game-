@@ -256,7 +256,7 @@ corner_radius_bottom_left = 15
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wewxt"]
 size = Vector2(311, 33)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qquwx"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hf4on"]
 texture = ExtResource("14_1rk4b")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.8007, -4.86136, -0.0883875, 2.56326, 3.44715, -4.68458, 5.56847, 0.618718, 8, 8, -8, 8)
@@ -268,7 +268,7 @@ texture = ExtResource("14_1rk4b")
 
 [sub_resource type="TileSet" id="TileSet_uaedw"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_qquwx")
+sources/0 = SubResource("TileSetAtlasSource_hf4on")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r84a0"]
 size = Vector2(14, 11)
@@ -436,7 +436,7 @@ text = "P2"
 script = ExtResource("12_mmfny")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaCaida"]
-position = Vector2(-79.5, 24.5)
+position = Vector2(-64, 16)
 shape = SubResource("RectangleShape2D_wewxt")
 
 [node name="Spikes" type="Area2D" parent="."]

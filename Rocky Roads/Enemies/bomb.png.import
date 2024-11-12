@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/bomb.png-f254dfb4be16cdebd418b86225a895ae.cte
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

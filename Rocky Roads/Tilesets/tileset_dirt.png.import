@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/tileset_dirt.png-9aa13cbcf566f1487a3b94b47f7e
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

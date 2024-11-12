@@ -46,7 +46,7 @@ func turn():
 		var collider = $RayCastWall2D.get_collider()
 		if collider != null and collider.name == "Player1" or collider.name == "Player2":
 			player_detected = true # Marca al jugador como detectado
-			speed += 45 # Persigue mas rapido al jugador
+			speed += 25 # Persigue mas rapido al jugador
 		else: # En caso contrario, valida si el enemigo choca con una pared
 			moving_left = !moving_left # Cambia el movimiento del enemigo al lado contrario
 			scale.x = -scale.x # Gira al enemigo
@@ -56,7 +56,7 @@ func turn():
 		var back_collider = $RayCastBack2D.get_collider()
 		if back_collider != null and back_collider.name == "Player1" or back_collider.name == "Player2":
 			player_detected = true # Marca al jugador como detectado
-			speed += 45 #Persigue mas rapido al jugador
+			speed += 105 #Persigue mas rapido al jugador
 			moving_left = !moving_left # Cambia de dirección hacia el jugador
 			scale.x = -scale.x # Gira al enemigo hacia el jugador
 	else:
@@ -82,7 +82,7 @@ func _on_head_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player1" or body.name == "Player2":
 		eliminated = true
 		die() # El enemigo muere
-		body.velocity.y = -200  # Rebote del jugador hacia arriba
+		body.velocity.y = -100  # Rebote del jugador hacia arriba
 func die():
 	$AnimationPlayer.play("Death") 
 	$LifeSound.play()

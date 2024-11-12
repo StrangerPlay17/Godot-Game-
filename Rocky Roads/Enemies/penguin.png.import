@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/penguin.png-02369c78f8730fa5d888c296429014ab.
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

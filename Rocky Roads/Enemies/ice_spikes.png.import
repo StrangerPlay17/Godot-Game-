@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/ice_spikes.png-ff1dfb4646d82f98b6aeae98556773
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

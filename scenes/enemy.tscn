@@ -105,10 +105,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6dbj"]
-size = Vector2(16, 12)
+size = Vector2(18, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bdkmu"]
-size = Vector2(18, 13)
+size = Vector2(20, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pliss"]
 size = Vector2(4, 2.25)
@@ -137,13 +137,13 @@ shape = SubResource("RectangleShape2D_n6dbj")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(2, 4.5)
+position = Vector2(2, 5)
 shape = SubResource("RectangleShape2D_bdkmu")
 
 [node name="RayCastWall2D" type="RayCast2D" parent="."]
-position = Vector2(-11, 6)
+position = Vector2(-9, 6)
 scale = Vector2(0.2, 0.2)
-target_position = Vector2(-30, 0)
+target_position = Vector2(-40, 0)
 collision_mask = 5
 
 [node name="RayCastFloor2D" type="RayCast2D" parent="."]
@@ -155,13 +155,13 @@ collision_mask = 5
 [node name="RayCastBack2D" type="RayCast2D" parent="."]
 position = Vector2(13, 6)
 scale = Vector2(0.2, 0.2)
-target_position = Vector2(130, 0)
+target_position = Vector2(155, 0)
 collision_mask = 5
 
 [node name="HeadArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadArea"]
-position = Vector2(4, -1.125)
+position = Vector2(2, -2)
 shape = SubResource("RectangleShape2D_pliss")
 
 [node name="LifeSound" type="AudioStreamPlayer" parent="."]

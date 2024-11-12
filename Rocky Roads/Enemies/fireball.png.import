@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/fireball.png-49ce5425b0957c61e03e30664df8d9f9
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

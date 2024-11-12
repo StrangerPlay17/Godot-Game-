@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/button.png-65938f23bdb1dcf1461ea3ab4091b0d4.c
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

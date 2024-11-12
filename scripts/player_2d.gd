@@ -54,11 +54,6 @@ func _physics_process(_delta: float) -> void:
 	# Aplica el movimiento usando la propiedad `velocity` directamente
 	move_and_slide()
 
-# Funcion en caso de morir en puas <-
-func _on_spikes_body_entered(body):
-	if body.get_name() == "Player1": # Valida si fue el player el que se cayo del mapa <-
-		print("Se ha pinchao el player1")
-		body._loseLife(position.x)
 
 # Funcion que baja la vida del jugador
 func _loseLife(enemyposx):
@@ -74,7 +69,9 @@ func _loseLife(enemyposx):
 	$LifeSound.play()
 	print("Vidas restantes: "+str(lifes))
 	# Encuentra el nodo "CanvasLayer" desde el nodo raíz de la escena
-	var canvas_layer = get_tree().root.get_node("Game/CanvasLayer")
+	var canvas_layer = get_tree().root.get_node("GameTutorial/CanvasLayer")
+	if canvas_layer == null:
+		canvas_layer = get_tree().root.get_node("Game/CanvasLayer")
 	canvas_layer.handleHeartsPlayer1(lifes) # Llama a la función "handlehearts" con la cantidad de vidas actuales <-
 	
 	if lifes <= 0: # Si las vidas del jugador se agotan
@@ -118,3 +115,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 '''
+
+func _on_spikes_body_entered(body: Node2D) -> void:
+	if body.get_name() == "Player1": # Valida si fue el player el que se cayo del mapa <-
+		print("Se ha pinchao el player1")
+		body._loseLife(position.x) # Replace with function body. # Replace with function body.

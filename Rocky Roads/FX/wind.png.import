@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/wind.png-7883181c92103c5890a168acd1b579ad.cte
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
