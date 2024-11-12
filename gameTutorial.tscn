@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://i0cl1treyuku"]
+[gd_scene load_steps=52 format=3 uid="uid://i0cl1treyuku"]
 
 [ext_resource type="Script" path="res://scripts/SharedCamera.gd" id="1_2m3e4"]
 [ext_resource type="Texture2D" uid="uid://dyudsw23witkd" path="res://Rocky Roads/Backgrounds/clouds.png" id="2_donrr"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://djl2rq08762mg" path="res://scenes/heart_p1.tscn" id="17_ch8h2"]
 [ext_resource type="PackedScene" uid="uid://dq14xh8pttr11" path="res://scenes/key.tscn" id="18_8iwp8"]
 [ext_resource type="PackedScene" uid="uid://cjbh3e4wru38f" path="res://scenes/heart_p2.tscn" id="18_g3ji1"]
+[ext_resource type="PackedScene" uid="uid://d3r72jwxppe2h" path="res://scenes/enemy.tscn" id="19_es4gv"]
 [ext_resource type="Texture2D" uid="uid://bs5hof1ny0crd" path="res://Rocky Roads/Deco/lava.png" id="19_fkdaa"]
 [ext_resource type="Script" path="res://scripts/ZonaCaida.gd" id="19_tlyuj"]
 [ext_resource type="Texture2D" uid="uid://cw45rde7jr6lh" path="res://Rocky Roads/Enemies/spikes.png" id="20_eyndi"]
@@ -31,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://c1ulxpqwv4s51" path="res://Rocky Roads/Deco/rock.png" id="23_cx5cs"]
 [ext_resource type="Script" path="res://scripts/door.gd" id="26_tome7"]
 [ext_resource type="PackedScene" uid="uid://0nlswgt0v6sv" path="res://scenes/message.tscn" id="31_mfvj6"]
+[ext_resource type="PackedScene" uid="uid://defm64gdv6mgx" path="res://scenes/messageEnemy.tscn" id="32_axibg"]
 [ext_resource type="Texture2D" uid="uid://bi8pkimwm30o" path="res://Rocky Roads/Backgrounds/desert_a.png" id="32_ujyls"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ivak"]
@@ -573,7 +575,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0ibjp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c02q0"]
-size = Vector2(14, 14.25)
+size = Vector2(14, 10.125)
 
 [node name="GameTutorial" type="Node2D"]
 texture_filter = 1
@@ -607,6 +609,9 @@ texture = ExtResource("3_2tkt0")
 
 [node name="MessageKey" parent="." instance=ExtResource("6_0641r")]
 position = Vector2(-15, -14)
+
+[node name="Message_Enemy" parent="." instance=ExtResource("6_0641r")]
+position = Vector2(201, -111)
 
 [node name="SignArrow" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -644,8 +649,11 @@ texture_filter = 1
 ignore_rotation = false
 zoom = Vector2(4, 4)
 
+[node name="Enemy" parent="." instance=ExtResource("19_es4gv")]
+position = Vector2(446, -91)
+
 [node name="Key" parent="." instance=ExtResource("18_8iwp8")]
-position = Vector2(189, -120)
+position = Vector2(159, -120)
 
 [node name="Coin" parent="." instance=ExtResource("13_6x1p2")]
 position = Vector2(598, -167)
@@ -772,14 +780,17 @@ shape = SubResource("RectangleShape2D_0p0q7")
 texture_filter = 1
 tile_set = SubResource("TileSet_twyoj")
 format = 2
-layer_0/tile_data = PackedInt32Array(-524279, 131072, 0)
+layer_0/tile_data = PackedInt32Array(-524281, 131072, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes"]
-position = Vector2(152, -119)
+position = Vector2(120, -116.938)
 shape = SubResource("RectangleShape2D_c02q0")
 
 [node name="Message" parent="." instance=ExtResource("31_mfvj6")]
 position = Vector2(-14, -45)
+
+[node name="MessageEnemy" parent="." instance=ExtResource("32_axibg")]
+position = Vector2(265, -124)
 
 [node name="DesertA" type="Sprite2D" parent="."]
 position = Vector2(217.25, 250)
