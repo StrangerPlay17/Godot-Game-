@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5te1h22t7von"]
+
+[ext_resource type="Script" path="res://scripts/silver_coin_2d.gd" id="1_lwlnk"]
+[ext_resource type="Texture2D" uid="uid://lctl2wwxnbe1" path="res://Rocky Roads/Objects/coin_silver.png" id="2_5emm1"]
+[ext_resource type="AudioStream" uid="uid://cs7m1c4082v56" path="res://music/sounds/toggle_002.ogg" id="3_4ndb1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dovoy"]
+
+[sub_resource type="Animation" id="Animation_iekvp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yflx0"]
+resource_name = "Flag"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 1, 1, 2, 3, 4, 5, 6, 7, 7, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_veirt"]
+_data = {
+"Flag": SubResource("Animation_yflx0"),
+"RESET": SubResource("Animation_iekvp")
+}
+
+[node name="Silver" type="Node2D"]
+
+[node name="Silver2D" type="Area2D" parent="."]
+script = ExtResource("1_lwlnk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Silver2D"]
+texture_filter = 1
+texture = ExtResource("2_5emm1")
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Silver2D"]
+shape = SubResource("CircleShape2D_dovoy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Silver2D"]
+libraries = {
+"": SubResource("AnimationLibrary_veirt")
+}
+autoplay = "Flag"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Silver2D"]
+stream = ExtResource("3_4ndb1")
+volume_db = -6.265
+
+[connection signal="body_entered" from="Silver2D" to="Silver2D" method="_on_body_entered"]

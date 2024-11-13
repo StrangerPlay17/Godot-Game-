@@ -541,7 +541,7 @@ corner_radius_bottom_left = 15
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wewxt"]
 size = Vector2(1135, 53.75)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ppu3e"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mkk6i"]
 texture = ExtResource("11_4ys4w")
 margins = Vector2i(6, 0)
 texture_region_size = Vector2i(19, 48)
@@ -555,7 +555,7 @@ texture_region_size = Vector2i(19, 48)
 
 [sub_resource type="TileSet" id="TileSet_bfh1h"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_ppu3e")
+sources/0 = SubResource("TileSetAtlasSource_mkk6i")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0p0q7"]
 size = Vector2(20, 49)

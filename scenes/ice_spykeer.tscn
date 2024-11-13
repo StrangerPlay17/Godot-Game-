@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://fo5kwukwre23"]
+
+[ext_resource type="Script" path="res://scripts/ice_spykeer.gd" id="1_h1pn4"]
+[ext_resource type="Texture2D" uid="uid://c8u67gs8seh07" path="res://Rocky Roads/Enemies/ice_spikes.png" id="2_py31b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qm46f"]
+size = Vector2(32, 12)
+
+[sub_resource type="Animation" id="Animation_yflx0"]
+resource_name = "Cloud"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.433333, 0.566667, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_iekvp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_veirt"]
+_data = {
+"Cloud": SubResource("Animation_yflx0"),
+"RESET": SubResource("Animation_iekvp")
+}
+
+[node name="IceSpykeer" type="Node2D"]
+script = ExtResource("1_h1pn4")
+
+[node name="Ice2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Ice2D"]
+texture_filter = 1
+texture = ExtResource("2_py31b")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ice2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_qm46f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ice2D"]
+libraries = {
+"": SubResource("AnimationLibrary_veirt")
+}
+
+[connection signal="body_entered" from="Ice2D" to="." method="_on_ice_2d_body_entered"]

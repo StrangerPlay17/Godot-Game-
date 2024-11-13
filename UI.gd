@@ -26,18 +26,35 @@ func _ready():
 	for coin in get_tree().get_nodes_in_group("coins"):  # Itera sobre todos los nodos "Coins" en el grupo "coins"
 		#print("Nodo Coin2D encontrado: ", child)
 		coin.connect("coinCollected", handleCoinCollected, 0)
+		
+	for silver in get_tree().get_nodes_in_group("silvers"):  # Itera sobre todos los nodos "Coins" en el grupo "coins"
+		#print("Nodo Coin2D encontrado: ", child)
+		silver.connect("silverCollected", handleSilverCollected, 0)	
+		
 	for chest in get_tree().get_nodes_in_group("chests"):  # Itera sobre todos los nodos en el grupo "chest"
 		#print("Nodo Coin2D encontrado: ", child)
 		chest.connect("chestCollected", handleChestCollected, 0)
 	
 	$CoinsCollectedText.text = str(coins) # Valor por defecto en coins impreso
 
-func handleCoinCollected(): # Funcion para suma de monedas
-	print("Coin Collected")
+func handleSilverCollected(): # Funcion para suma de monedas
+	print("silver Collected")
 	coins += 1
 	$CoinsCollectedText.text = str(coins)
+	if coins == 4:
+		# Si las monedas recogidas fueron 3 y ademas, se esta en el tutorial
+		var canvas_layer = get_tree().root.get_node("GameTutorial/CanvasLayer")
+		if canvas_layer != null:
+			get_tree().change_scene_to_file("res://game.tscn")
+		else: # Sino, se esta en el nivel del juego 
+			get_tree().change_scene_to_file("res://scenes/victory.tscn")
+
+func handleCoinCollected(): # Funcion para suma de monedas
+	print("Coin Collected")
+	coins += 2
+	$CoinsCollectedText.text = str(coins)
 	# Al recoger 3 monedas el nivel termina
-	if coins == 3:
+	if coins == 4:
 		# Si las monedas recogidas fueron 3 y ademas, se esta en el tutorial
 		var canvas_layer = get_tree().root.get_node("GameTutorial/CanvasLayer")
 		if canvas_layer != null:

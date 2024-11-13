@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var gravity = 10
-var speed = 25
+var speed = 10
 var moving_left = true
 var player_detected = false # Para indicar si se ha detectado al jugador
 var eliminated = false
@@ -41,24 +41,24 @@ func turn():
 	if not $RayCastFloor2D.is_colliding():
 		moving_left = !moving_left # Cambia el movimiento del enemigo al lado contrario
 		scale.x = -scale.x # Gira al enemigo
-		speed = 25 # Vuelve a su velocidad inicial
+		speed = 10 # Vuelve a su velocidad inicial
 	
 	# Si el raycast frontal detecta al jugador
 	elif $RayCastWall2D.is_colliding():
 		var collider = $RayCastWall2D.get_collider()
 		if collider != null and collider.name == "Player1" or collider.name == "Player2":
 			player_detected = true # Marca al jugador como detectado
-			speed += 25 # Persigue mas rapido al jugador
+			speed += 1 # Persigue mas rapido al jugador
 		else: # En caso contrario, valida si el enemigo choca con una pared
 			moving_left = !moving_left # Cambia el movimiento del enemigo al lado contrario
 			scale.x = -scale.x # Gira al enemigo
-			speed = 25 # Vuelve a su velocidad inicial
+			speed = 10 # Vuelve a su velocidad inicial
 	# Si el raycast trasero detecta al jugador
 	elif $RayCastBack2D.is_colliding():
 		var back_collider = $RayCastBack2D.get_collider()
 		if back_collider != null and back_collider.name == "Player1" or back_collider.name == "Player2":
 			player_detected = true # Marca al jugador como detectado
-			speed += 105 #Persigue mas rapido al jugador
+			speed += 1 #Persigue mas rapido al jugador
 			moving_left = !moving_left # Cambia de dirección hacia el jugador
 			scale.x = -scale.x # Gira al enemigo hacia el jugador
 	else:

@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3r72jwxppe2h"]
+[gd_scene load_steps=14 format=3 uid="uid://r54poyabogq"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_f7cjv"]
-[ext_resource type="Texture2D" uid="uid://ca11qamk5c7dx" path="res://Rocky Roads/Enemies/slime_green.png" id="2_mpd22"]
-[ext_resource type="AudioStream" uid="uid://b3tdmyhtw0gb8" path="res://music/sounds/life_sound.mp3" id="3_f4d43"]
-[ext_resource type="Texture2D" uid="uid://dxmbtnu5yr1i0" path="res://Rocky Roads/FX/hit.png" id="4_4y3d5"]
+[ext_resource type="Texture2D" uid="uid://d3w2jm6nb7bjw" path="res://Rocky Roads/Enemies/bat.png" id="1_8x70j"]
+[ext_resource type="Script" path="res://scripts/bat.gd" id="1_bqueo"]
+[ext_resource type="AudioStream" uid="uid://b3tdmyhtw0gb8" path="res://music/sounds/life_sound.mp3" id="2_l1tcn"]
+[ext_resource type="Texture2D" uid="uid://dxmbtnu5yr1i0" path="res://Rocky Roads/FX/hit.png" id="3_skhn1"]
 
 [sub_resource type="Animation" id="Animation_ry6yd"]
 resource_name = "Attack"
@@ -104,24 +104,25 @@ _data = {
 "Walk": SubResource("Animation_3lch4")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6dbj"]
-size = Vector2(18, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mkt3"]
+size = Vector2(18, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdkmu"]
-size = Vector2(20, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_is6g2"]
+size = Vector2(20, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pliss"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wmus"]
 size = Vector2(4, 2.25)
 
-[node name="Enemy" type="CharacterBody2D"]
-texture_filter = 1
-script = ExtResource("1_f7cjv")
+[node name="Bat" type="CharacterBody2D"]
+script = ExtResource("1_bqueo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, 1.5)
-scale = Vector2(1.25, 1.1875)
-texture = ExtResource("2_mpd22")
-hframes = 5
+texture_filter = 1
+position = Vector2(2.38419e-07, 5)
+scale = Vector2(0.9375, 0.921875)
+texture = ExtResource("1_8x70j")
+flip_h = true
+hframes = 4
 vframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -131,48 +132,48 @@ libraries = {
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 5)
-shape = SubResource("RectangleShape2D_n6dbj")
+position = Vector2(2, 11.5)
+shape = SubResource("RectangleShape2D_5mkt3")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(2, 5)
-shape = SubResource("RectangleShape2D_bdkmu")
+position = Vector2(2, 11.5)
+shape = SubResource("RectangleShape2D_is6g2")
 
 [node name="RayCastWall2D" type="RayCast2D" parent="."]
-position = Vector2(-9, 6)
+position = Vector2(-15, 20)
 scale = Vector2(0.2, 0.2)
-target_position = Vector2(-40, 0)
+target_position = Vector2(-50, 0)
 collision_mask = 5
 
 [node name="RayCastFloor2D" type="RayCast2D" parent="."]
 position = Vector2(-11, 1)
 scale = Vector2(0.2, 0.2)
-target_position = Vector2(0, 60)
+target_position = Vector2(0, 130)
 collision_mask = 5
 
 [node name="RayCastBack2D" type="RayCast2D" parent="."]
-position = Vector2(13, 6)
+position = Vector2(17, 20)
 scale = Vector2(0.2, 0.2)
-target_position = Vector2(155, 0)
+target_position = Vector2(140, 0)
 collision_mask = 5
 
 [node name="HeadArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadArea"]
 position = Vector2(2, -2)
-shape = SubResource("RectangleShape2D_pliss")
+shape = SubResource("RectangleShape2D_6wmus")
 
 [node name="LifeSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_f4d43")
+stream = ExtResource("2_l1tcn")
 
 [node name="Hit2D" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
 position = Vector2(-10.25, 3.25)
 scale = Vector2(0.614583, 0.635417)
-texture = ExtResource("4_4y3d5")
+texture = ExtResource("3_skhn1")
 hframes = 5
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

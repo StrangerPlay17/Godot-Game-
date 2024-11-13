@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2oii50wup524"]
+[gd_scene load_steps=8 format=3 uid="uid://dti8caxqef7rd"]
 
-[ext_resource type="Texture2D" uid="uid://bxutxe2vk1pqu" path="res://Rocky Roads/Objects/coin_gold.png" id="1_fbrx1"]
-[ext_resource type="Script" path="res://scripts/coin_2d.gd" id="1_s41qp"]
-[ext_resource type="AudioStream" uid="uid://cs7m1c4082v56" path="res://music/sounds/toggle_002.ogg" id="3_ji135"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_fkrhh"]
+[ext_resource type="Script" path="res://scripts/bomb.gd" id="1_7383q"]
+[ext_resource type="Texture2D" uid="uid://dk60o17udmgej" path="res://Rocky Roads/Enemies/bomb.png" id="2_by7hm"]
+[ext_resource type="AudioStream" uid="uid://dfau0n3yiywdc" path="res://music/sounds/error_005.ogg" id="3_l2nw7"]
 
 [sub_resource type="Animation" id="Animation_iekvp"]
 length = 0.001
@@ -43,27 +41,29 @@ _data = {
 "RESET": SubResource("Animation_iekvp")
 }
 
-[node name="Coin" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_scc3g"]
 
-[node name="Coin2D" type="Area2D" parent="."]
-script = ExtResource("1_s41qp")
+[node name="Bomb" type="Node2D"]
+script = ExtResource("1_7383q")
 
-[node name="Sprite2D" type="Sprite2D" parent="Coin2D"]
-texture_filter = 1
-texture = ExtResource("1_fbrx1")
-hframes = 8
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_l2nw7")
+volume_db = 11.952
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin2D"]
-shape = SubResource("CircleShape2D_fkrhh")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Coin2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Bomb2D")
 libraries = {
 "": SubResource("AnimationLibrary_veirt")
 }
-autoplay = "Bomb"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Coin2D"]
-stream = ExtResource("3_ji135")
-volume_db = -6.265
+[node name="Bomb2D" type="Area2D" parent="."]
 
-[connection signal="body_entered" from="Coin2D" to="Coin2D" method="_on_body_entered"]
+[node name="Sprite2D" type="Sprite2D" parent="Bomb2D"]
+texture_filter = 1
+texture = ExtResource("2_by7hm")
+hframes = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bomb2D"]
+shape = SubResource("CircleShape2D_scc3g")
+
+[connection signal="body_entered" from="Bomb2D" to="." method="_on_bomb_2d_body_entered"]

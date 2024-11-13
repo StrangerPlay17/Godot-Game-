@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://m0a3fws6u32e"]
+[gd_scene load_steps=47 format=3 uid="uid://m0a3fws6u32e"]
 
 [ext_resource type="AudioStream" uid="uid://fpc51oca5uay" path="res://music/global/POL-king-of-coins-short.wav" id="1_ahx2e"]
 [ext_resource type="Texture2D" uid="uid://dynwokuvn7veb" path="res://Rocky Roads/Tilesets/tileset_water.png" id="1_islb4"]
@@ -16,11 +16,25 @@
 [ext_resource type="PackedScene" uid="uid://dncapflbstwx5" path="res://scenes/player2.tscn" id="13_q50ib"]
 [ext_resource type="Texture2D" uid="uid://cw45rde7jr6lh" path="res://Rocky Roads/Enemies/spikes.png" id="14_1rk4b"]
 [ext_resource type="PackedScene" uid="uid://duj0pnqdqjoqg" path="res://scenes/paused_menu.tscn" id="14_ibd1b"]
+[ext_resource type="PackedScene" uid="uid://i2deswlex13r" path="res://scenes/flag.tscn" id="15_38rce"]
 [ext_resource type="PackedScene" uid="uid://8l7372lb6swv" path="res://scenes/player1.tscn" id="15_embei"]
 [ext_resource type="PackedScene" uid="uid://cfaxt05f75j0d" path="res://scenes/saw.tscn" id="15_qb1dx"]
 [ext_resource type="PackedScene" uid="uid://djl2rq08762mg" path="res://scenes/heart_p1.tscn" id="16_cxx2x"]
+[ext_resource type="PackedScene" uid="uid://rnovvc5g38jv" path="res://scenes/cloud_2d.tscn" id="16_txx1d"]
 [ext_resource type="PackedScene" uid="uid://cjbh3e4wru38f" path="res://scenes/heart_p2.tscn" id="17_qrn4x"]
 [ext_resource type="PackedScene" uid="uid://7jqv2qf7f8p3" path="res://scenes/chest.tscn" id="21_1lfak"]
+[ext_resource type="PackedScene" uid="uid://brdqrvg3misnn" path="res://scenes/button.tscn" id="22_u0qdk"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="23_3j3m5"]
+[ext_resource type="Texture2D" uid="uid://dmf2jdhajeas2" path="res://Rocky Roads/Deco/log_wall.png" id="24_svdpp"]
+[ext_resource type="PackedScene" uid="uid://b5te1h22t7von" path="res://scenes/silver_coin.tscn" id="25_h1d7c"]
+[ext_resource type="PackedScene" uid="uid://c3vqqyad6dxd8" path="res://scenes/fire_2d.tscn" id="26_3md3l"]
+[ext_resource type="PackedScene" uid="uid://desakl8kf4ing" path="res://scenes/lock.tscn" id="27_524b1"]
+[ext_resource type="PackedScene" uid="uid://fo5kwukwre23" path="res://scenes/ice_spykeer.tscn" id="27_v05c0"]
+[ext_resource type="PackedScene" uid="uid://cbuamx2olmm7k" path="res://scenes/icicle.tscn" id="31_pquxe"]
+[ext_resource type="PackedScene" uid="uid://dti8caxqef7rd" path="res://scenes/bomb.tscn" id="32_doqhn"]
+[ext_resource type="PackedScene" uid="uid://hhuvia4bgp0j" path="res://scenes/bear.tscn" id="33_fvt4j"]
+[ext_resource type="PackedScene" uid="uid://deb4wliv7yor4" path="res://scenes/penguin.tscn" id="34_qjwsk"]
+[ext_resource type="PackedScene" uid="uid://r54poyabogq" path="res://scenes/bat.tscn" id="35_k4ksy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ivak"]
 texture = ExtResource("1_islb4")
@@ -273,6 +287,25 @@ sources/0 = SubResource("TileSetAtlasSource_hf4on")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r84a0"]
 size = Vector2(14, 11)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6rpug"]
+texture = ExtResource("24_svdpp")
+margins = Vector2i(6, 0)
+texture_region_size = Vector2i(19, 48)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8.30851, -22.2739, 9.01561, -22.2739, 9.01561, 23.6881, -8.30851, 24.0416)
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ydwac"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_6rpug")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqykk"]
+size = Vector2(20, 49)
+
 [node name="Game" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_ue7mv")
@@ -337,19 +370,31 @@ ignore_rotation = false
 zoom = Vector2(4, 4)
 
 [node name="Enemy" parent="." instance=ExtResource("11_3kgsn")]
-position = Vector2(-32, -31)
+position = Vector2(110, -45)
 
 [node name="Coin" parent="." instance=ExtResource("10_4nj3n")]
-position = Vector2(1, -39)
+position = Vector2(28, -77)
 
 [node name="Coin2" parent="." instance=ExtResource("10_4nj3n")]
-position = Vector2(-65, -20)
+position = Vector2(100, -100)
 
 [node name="Coin3" parent="." instance=ExtResource("10_4nj3n")]
 position = Vector2(-125, -45)
 
+[node name="SilverCoin" parent="." instance=ExtResource("25_h1d7c")]
+position = Vector2(-40, -104)
+
+[node name="Flag" parent="." instance=ExtResource("15_38rce")]
+position = Vector2(64, -32)
+
+[node name="Cloud2D" parent="." instance=ExtResource("16_txx1d")]
+position = Vector2(28, -52)
+
 [node name="Chest" parent="." instance=ExtResource("21_1lfak")]
 position = Vector2(-149, -96)
+
+[node name="Button" parent="." instance=ExtResource("22_u0qdk")]
+position = Vector2(-104, -84)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 offset = Vector2(450, 375)
@@ -453,6 +498,42 @@ shape = SubResource("RectangleShape2D_r84a0")
 
 [node name="Saw" parent="." instance=ExtResource("15_qb1dx")]
 position = Vector2(-4, -101)
+
+[node name="Fire2D" parent="." instance=ExtResource("26_3md3l")]
+position = Vector2(-84, -75)
+
+[node name="IceSpykeer" parent="." instance=ExtResource("27_v05c0")]
+position = Vector2(85, -71)
+
+[node name="Bomb" parent="." instance=ExtResource("32_doqhn")]
+position = Vector2(57, -104)
+
+[node name="Door" type="Area2D" parent="."]
+script = ExtResource("23_3j3m5")
+
+[node name="TileMap" type="TileMap" parent="Door"]
+tile_set = SubResource("TileSet_ydwac")
+format = 2
+layer_0/tile_data = PackedInt32Array(-196599, 0, 0, -524277, 262145, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(152, -39.5)
+shape = SubResource("RectangleShape2D_xqykk")
+
+[node name="Lock" parent="Door" instance=ExtResource("27_524b1")]
+position = Vector2(140, -37)
+
+[node name="Icicle" parent="." instance=ExtResource("31_pquxe")]
+position = Vector2(-66, -24)
+
+[node name="Bear" parent="." instance=ExtResource("33_fvt4j")]
+position = Vector2(175, -42)
+
+[node name="Penguin" parent="." instance=ExtResource("34_qjwsk")]
+position = Vector2(175, -78)
+
+[node name="Bat" parent="." instance=ExtResource("35_k4ksy")]
+position = Vector2(-11, -40)
 
 [connection signal="body_entered" from="ZonaCaida" to="ZonaCaida" method="_on_body_entered"]
 [connection signal="body_entered" from="Spikes" to="Player1" method="_on_spikes_body_entered"]

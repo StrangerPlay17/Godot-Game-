@@ -77,6 +77,7 @@ func _loseLife(enemyposx):
 		is_dead = true  # Marca al jugador como muerto
 		animationPlayer.play("Dead")  # Reproduce la animación de muerte
 		$DeathSound.play()
+		$CollisionShape2D.disabled = true  # Reemplaza CollisionShape2D con el nombre de tu nodo de colisión
 		await get_tree().create_timer(2.3).timeout  # Demora de la animación de muerte
 		emit_signal("out_of_lives", self)  # Notifica que el jugador se quedó sin vidas
 		#call_deferred("reload_scene")  # Llama a la función de recarga de la escena
