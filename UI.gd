@@ -43,11 +43,8 @@ func handleSilverCollected(): # Funcion para suma de monedas
 	$CoinsCollectedText.text = str(coins)
 	if coins == 4:
 		# Si las monedas recogidas fueron 3 y ademas, se esta en el tutorial
-		var canvas_layer = get_tree().root.get_node("GameTutorial/CanvasLayer")
-		if canvas_layer != null:
-			get_tree().change_scene_to_file("res://game.tscn")
-		else: # Sino, se esta en el nivel del juego 
-			get_tree().change_scene_to_file("res://scenes/victory.tscn")
+		# Pasa el menu de Victoria
+		get_tree().change_scene_to_file("res://scenes/victory.tscn")
 
 func handleCoinCollected(): # Funcion para suma de monedas
 	print("Coin Collected")
