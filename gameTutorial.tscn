@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://i0cl1treyuku"]
+[gd_scene load_steps=54 format=3 uid="uid://i0cl1treyuku"]
 
 [ext_resource type="Script" path="res://scripts/SharedCamera.gd" id="1_2m3e4"]
 [ext_resource type="Texture2D" uid="uid://dyudsw23witkd" path="res://Rocky Roads/Backgrounds/clouds.png" id="2_donrr"]
@@ -31,6 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://df1ui7ahjktfg" path="res://Rocky Roads/Deco/tree_trunk.png" id="22_tetbo"]
 [ext_resource type="Texture2D" uid="uid://c1ulxpqwv4s51" path="res://Rocky Roads/Deco/rock.png" id="23_cx5cs"]
 [ext_resource type="Script" path="res://scripts/door.gd" id="26_tome7"]
+[ext_resource type="Texture2D" uid="uid://bbyirh07ivcww" path="res://Rocky Roads/Enemies/slime_blue.png" id="27_68f3n"]
+[ext_resource type="Texture2D" uid="uid://bivil4u1vcje5" path="res://Rocky Roads/Enemies/chicken.png" id="28_nsxvy"]
 [ext_resource type="PackedScene" uid="uid://0nlswgt0v6sv" path="res://scenes/message.tscn" id="31_mfvj6"]
 [ext_resource type="PackedScene" uid="uid://defm64gdv6mgx" path="res://scenes/messageEnemy.tscn" id="32_axibg"]
 [ext_resource type="Texture2D" uid="uid://bi8pkimwm30o" path="res://Rocky Roads/Backgrounds/desert_a.png" id="32_ujyls"]
@@ -729,23 +731,27 @@ offset_right = -74.75
 offset_bottom = -64.0
 text = ":"
 
-[node name="P1_label" type="Label" parent="CanvasLayer"]
-texture_filter = 1
-offset_left = -39.25
-offset_top = -87.5
-offset_right = -20.25
-offset_bottom = -64.5
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-text = "P1"
+[node name="P1" type="Area2D" parent="CanvasLayer"]
+position = Vector2(153, -174.5)
 
-[node name="P2_label" type="Label" parent="CanvasLayer"]
+[node name="P1Sprite2D" type="Sprite2D" parent="CanvasLayer/P1"]
 texture_filter = 1
-offset_left = 76.5
-offset_top = -87.25
-offset_right = 95.5
-offset_bottom = -64.25
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-text = "P2"
+position = Vector2(-183.5, 97)
+scale = Vector2(0.96875, 1.03125)
+texture = ExtResource("27_68f3n")
+hframes = 5
+vframes = 2
+
+[node name="P2" type="Area2D" parent="CanvasLayer"]
+position = Vector2(229.5, -261.75)
+
+[node name="P2Sprite2D" type="Sprite2D" parent="CanvasLayer/P2"]
+texture_filter = 1
+position = Vector2(-141.75, 180)
+scale = Vector2(0.737122, 0.784729)
+texture = ExtResource("28_nsxvy")
+hframes = 7
+vframes = 2
 
 [node name="Lava" type="Sprite2D" parent="."]
 position = Vector2(-44, 8)
