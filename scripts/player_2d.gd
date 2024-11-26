@@ -150,9 +150,11 @@ func respawn_at_checkpoint():
 		
 		if canvas_layer:
 			if get_groups().has("player1"):
+				canvas_layer.restoreHearts("player1")
 				canvas_layer.handleHeartsPlayer1(lifes)
 				print("Jugador reapareció en el checkpoint: ", last_checkpoint_position)
 			else:
+				canvas_layer.restoreHearts("player2")
 				canvas_layer.handleHeartsPlayer2(lifes)
 		else:
 			print("ERROR: No se pudo encontrar el CanvasLayer")

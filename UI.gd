@@ -11,6 +11,14 @@ var heart4
 var heart5
 var heart6
 
+var total_coins = 8
+var total_silver_coins = 8
+var total_chests = 4
+
+var collected_coins = 0
+var collected_silver_coins = 0
+var collected_chests = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Player1 Hearts
@@ -37,6 +45,42 @@ func _ready():
 	
 	$CoinsCollectedText.text = str(coins) # Valor por defecto en coins impreso
 
+func handleCoinCollected(): 
+	print("Coin Collected")
+	collected_coins += 1
+	coins += 2
+	$CoinsCollectedText.text = str(coins)
+	checkVictoryCondition()
+
+func handleSilverCollected(): 
+	print("Silver Collected")
+	collected_silver_coins += 1
+	coins += 1
+	$CoinsCollectedText.text = str(coins)
+	checkVictoryCondition()
+
+func handleChestCollected(): 
+	print("Chest Collected")
+	collected_chests += 1
+	coins += 3
+	$CoinsCollectedText.text = str(coins)
+	checkVictoryCondition()
+
+func checkVictoryCondition():
+	# Verifica si estás en el tutorial
+	var canvas_layer = get_tree().root.find_child("GameTutorial", true, false)
+	
+	if canvas_layer != null:
+		# Lógica para el tutorial (cambiar de escena con 4 monedas)
+		if coins == 4:
+			get_tree().change_scene_to_file("res://game.tscn")
+	else:
+		# Lógica para el juego principal
+		if collected_coins == total_coins and collected_silver_coins == total_silver_coins and collected_chests == total_chests:
+			get_tree().change_scene_to_file("res://scenes/victory.tscn")
+		
+
+"""
 func handleSilverCollected(): # Funcion para suma de monedas
 	print("silver Collected")
 	coins += 1
@@ -70,6 +114,7 @@ func handleChestCollected(): # Funcion para recoleccion de chest
 	# Al recoger 10 monedas el nivel termina
 	if coins == 10:
 		get_tree().change_scene_to_file("res://scenes/victory.tscn")
+"""
 
 func handleHeartsPlayer1(lifes): # Muestra las vidas que le quedan al player1 <-
 	if lifes == 2:
@@ -92,3 +137,15 @@ func handleHeartsPlayer2(lifes): # Muestra las vidas que le quedan al player2 <-
 		heart4.visible = false
 		heart5.visible = false
 		heart6.visible = false
+
+func restoreHearts(player_group):
+	if player_group == "player1":
+		# Restaura los corazones del Jugador 1
+		heart1.visible = true
+		heart2.visible = true
+		heart3.visible = true
+	elif player_group == "player2":
+		# Restaura los corazones del Jugador 2
+		heart4.visible = true
+		heart5.visible = true
+		heart6.visible = true

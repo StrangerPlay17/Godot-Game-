@@ -794,8 +794,14 @@ zoom = Vector2(3.5, 3.5)
 [node name="checkpoint_container" type="Node2D" parent="."]
 script = ExtResource("51_s3jm0")
 
+[node name="Checkpoint3" parent="checkpoint_container" instance=ExtResource("51_dmip0")]
+position = Vector2(8165, -91)
+
 [node name="Checkpoint" parent="checkpoint_container" instance=ExtResource("51_dmip0")]
-position = Vector2(54, -29)
+position = Vector2(1565, -30)
+
+[node name="Checkpoint2" parent="checkpoint_container" instance=ExtResource("51_dmip0")]
+position = Vector2(4271, -29)
 
 [node name="Player1" parent="." instance=ExtResource("15_embei")]
 position = Vector2(-65, -27)
