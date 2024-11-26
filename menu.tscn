@@ -1,0 +1,269 @@
+[gd_scene load_steps=23 format=3 uid="uid://by7j76y14wul4"]
+
+[ext_resource type="Texture2D" uid="uid://dspf1x7ffeyuc" path="res://images/fondo_game.jpg" id="1_32pqu"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_qomtp"]
+[ext_resource type="Texture2D" uid="uid://ca11qamk5c7dx" path="res://Rocky Roads/Enemies/slime_green.png" id="3_5dibc"]
+[ext_resource type="AudioStream" uid="uid://m4wjiqipn188" path="res://music/global/game_intro.mp3" id="3_q6ao8"]
+[ext_resource type="PackedScene" uid="uid://cjbh3e4wru38f" path="res://scenes/heart_p2.tscn" id="4_mxf45"]
+[ext_resource type="Texture2D" uid="uid://bivil4u1vcje5" path="res://Rocky Roads/Enemies/chicken.png" id="5_7bau1"]
+
+[sub_resource type="GDScript" id="GDScript_mjpdc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm7em"]
+script = SubResource("GDScript_mjpdc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nshci"]
+bg_color = Color(0.762881, 0.559974, 0.0752668, 0.878431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6po7"]
+bg_color = Color(0.597437, 0.44465, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhr5r"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kuw4j"]
+bg_color = Color(0.764706, 0.560784, 0.0745098, 0.878431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6b7k"]
+bg_color = Color(0.764706, 0.560784, 0.0745098, 0.878431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hafb5"]
+bg_color = Color(0.596078, 0.443137, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjqpc"]
+bg_color = Color(0.643137, 0.0235294, 0.0235294, 1)
+
+[sub_resource type="Animation" id="Animation_i8qe4"]
+resource_name = "Move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chicken:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.666667, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 9, 10, 12]
+}
+
+[sub_resource type="Animation" id="Animation_i2bbu"]
+resource_name = "Move_Slime"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 4]
+}
+
+[sub_resource type="Animation" id="Animation_wwu3e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chicken:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slime:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgybi"]
+_data = {
+"Move": SubResource("Animation_i8qe4"),
+"Move_Slime": SubResource("Animation_i2bbu"),
+"RESET": SubResource("Animation_wwu3e")
+}
+
+[sub_resource type="Animation" id="Animation_fnepe"]
+resource_name = "Move"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 4]
+}
+
+[sub_resource type="Animation" id="Animation_od5bu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3aih"]
+_data = {
+"Move": SubResource("Animation_fnepe"),
+"RESET": SubResource("Animation_od5bu")
+}
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qomtp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.455817, 0.455817, 0.455817, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+material = SubResource("ShaderMaterial_sm7em")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_32pqu")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -64.0
+offset_right = 211.0
+offset_bottom = 234.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 45
+
+[node name="Play" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 13
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_nshci")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b6po7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bhr5r")
+text = "Jugar"
+
+[node name="Tutorial" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 13
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_kuw4j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b6po7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bhr5r")
+text = "Tutorial"
+
+[node name="Quit" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 13
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_l6b7k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hafb5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hjqpc")
+text = "Salir "
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+offset_left = 313.0
+offset_top = 21.0
+offset_right = 853.0
+offset_bottom = 172.0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.619608, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+text = "Slime Rocket"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slime" type="Sprite2D" parent="ColorRect"]
+texture_filter = 1
+position = Vector2(890, 85)
+scale = Vector2(5.35, 4.75)
+texture = ExtResource("3_5dibc")
+hframes = 5
+vframes = 2
+frame = 1
+
+[node name="HeartP2" parent="ColorRect" instance=ExtResource("4_mxf45")]
+position = Vector2(209, 90)
+scale = Vector2(8, 8)
+
+[node name="HeartP3" parent="ColorRect" instance=ExtResource("4_mxf45")]
+position = Vector2(987, 85)
+scale = Vector2(8, 8)
+
+[node name="Chicken" type="Sprite2D" parent="ColorRect"]
+texture_filter = 1
+position = Vector2(196, 303)
+scale = Vector2(6.11531, 5.53532)
+texture = ExtResource("5_7bau1")
+flip_h = true
+hframes = 7
+vframes = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q6ao8")
+volume_db = 3.39
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ColorRect")
+libraries = {
+"": SubResource("AnimationLibrary_cgybi")
+}
+autoplay = "Move"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p3aih")
+}
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
