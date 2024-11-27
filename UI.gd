@@ -1,3 +1,4 @@
+#UI.gb
 extends CanvasLayer
 
 var coins = 0 # Referencia a las monedas en la interfaz <-
