@@ -1,4 +1,5 @@
 # checkpoint.gd
+
 extends Area2D
 
 #señal que se emite cuando se alcanza el cheackpoint
@@ -25,9 +26,10 @@ func _ready():
 	
 # Método llamado cuando un cuerpo entra al área
 func _on_body_entered(body: Node2D) -> void:
-	# Imprime el nombre del cuerpo que colisionó
-	print("COLISIÓN DETECTADA con: ", body.name)
-	
+	if body.is_in_group("player1") or body.is_in_group("player2"):
+		print(body.name + " detectado en checkpoint!")
+		checkpoint_reached.emit(body, checkpoint_position)
+		is_active = true  # marca el checkpoint activado
 	
 	# Verifica si el cuerpo está en los grupos correctos
 	if body.is_in_group("player1") or body.is_in_group("player2"):
