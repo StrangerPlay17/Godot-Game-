@@ -1,4 +1,5 @@
 #player2_2d.gd
+
 extends CharacterBody2D
 
 @warning_ignore("unused_signal")
@@ -107,7 +108,12 @@ func _loseLife(enemyposx):
 		#$CollisionShape2D.disabled = true
 		$CollisionShape2D.set_deferred("disabled", true)
 		await get_tree().create_timer(2.3).timeout
-		respawn_at_checkpoint()
+		if last_checkpoint_position:
+			# Si hay un checkpoint guardado, reaparecer en el checkpoint
+			respawn_at_checkpoint()
+		else:
+			# Si no hay checkpoint, emitir señal de sin vidas y cargar pantalla de Game Over
+			emit_signal("out_of_lives", self)
 
 #Funcion para guardar la posicion del ultimo checkpoint
 func update_checkpoint(new_position: Vector2) -> void:
@@ -120,16 +126,49 @@ func update_checkpoint(new_position: Vector2) -> void:
 func respawn_at_checkpoint():
 	# Imprime la posición donde va a reaparecer
 	print("Reapareciendo en: ", last_checkpoint_position)
+	
 	# Verifica si hay una posición de checkpoint guardada
-	if last_checkpoint_position != Vector2.ZERO:  # Solo respawnear si hay un checkpoint guardado
-		velocity = Vector2.ZERO
-		is_dead = false
-		# Reactiva la colisión del jugador
-		$CollisionShape2D.disabled = false
-		# Teletransporta al jugador al checkpoint
-		global_position = last_checkpoint_position
-		lifes = 3  # Restablece las vidas del jugador
-
+	if last_checkpoint_position != Vector2.ZERO:
+		# Busca los nodos de ambos jugadores
+		var player1 = get_node_or_null("/root/Game/Player1")
+		var player2 = get_node_or_null("/root/Game/Player2")
+		
+		# Array para almacenar los jugadores
+		var players = []
+		
+		# Agrega los jugadores al array si existen
+		if player1:
+			players.append(player1)
+		if player2:
+			players.append(player2)
+		
+		# Itera sobre cada jugador para reaparecer
+		for player in players:	
+			
+			# Desactiva temporalmente la física
+			player.set_physics_process(false)
+			
+			# Resetea propiedades del jugador
+			player.velocity = Vector2.ZERO
+			player.is_dead = false
+			
+			# Reactiva la colisión del jugador
+			player.get_node("CollisionShape2D").disabled = false
+			
+			# Teletransporta al jugador al checkpoint
+			player.global_position = last_checkpoint_position
+			
+			# Restablece las vidas del jugador
+			player.lifes = 3
+			
+			# Cambia a la animación de caminar al reaparecer
+			player.animationPlayer.play("Walk")
+			
+			# Reactiva la física después de un breve momento
+			await get_tree().create_timer(0.1).timeout
+			player.set_physics_process(true)
+			
+		# Busca el CanvasLayer
 		var canvas_layer = null
 		var possible_paths = [
 			"GameTutorial/CanvasLayer",
@@ -144,14 +183,34 @@ func respawn_at_checkpoint():
 				canvas_layer = get_node(path)
 				break
 		
+		# Restaura los corazones de ambos jugadores
 		if canvas_layer:
-			if get_groups().has("player2"):
-				canvas_layer.restoreHearts("player2")
-				canvas_layer.handleHeartsPlayer2(lifes)
-				print("Jugador reapareció en el checkpoint: ", last_checkpoint_position)
-			else:
+			# Verifica si ambos jugadores están vivos (tienen vidas > 0)
+			var player1_alive = player1 and player1.lifes > 0
+			var player2_alive = player2 and player2.lifes > 0
+			
+			# Si ambos jugadores están vivos
+			if player1_alive and player2_alive:
+				# Restaura los corazones y actualiza la interfaz de ambos jugadores
 				canvas_layer.restoreHearts("player1")
-				canvas_layer.handleHeartsPlayer1(lifes)
+				canvas_layer.handleHeartsPlayer1(player1.lifes)
+			
+				canvas_layer.restoreHearts("player2")
+				canvas_layer.handleHeartsPlayer2(player2.lifes)
+			
+				print("Jugadores reaparecieron en el checkpoint: ", last_checkpoint_position)
+			else:
+				 # Si alguno de los jugadores no está vivo
+				if player1_alive:
+					canvas_layer.restoreHearts("player1")
+					canvas_layer.handleHeartsPlayer1(player1.lifes)
+					print("Solo Player 1 restaurado en el checkpoint")
+				
+				if player2_alive:
+					canvas_layer.restoreHearts("player2")
+					canvas_layer.handleHeartsPlayer2(player2.lifes)
+					print("Solo Player 2 restaurado en el checkpoint")
+				
 		else:
 			print("ERROR: No se pudo encontrar el CanvasLayer")
 	else:

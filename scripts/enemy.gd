@@ -1,7 +1,8 @@
+#Enemy
 extends CharacterBody2D
 
 var gravity = 10
-var speed = 25
+var speed = 10
 var moving_left = true
 var player_detected = false # Para indicar si se ha detectado al jugador
 var eliminated = false

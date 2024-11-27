@@ -1,3 +1,5 @@
+#SharedCamera.gd
+
 extends Node2D
 
 @onready var player1 = $Player1
@@ -7,8 +9,8 @@ var opposing_player
 var player_eliminado = false
 
 # Ajusta estos valores según lo necesario
-var min_zoom = Vector2(4.4, 4.4)  # Zoom mínimo para la cámara
-var max_zoom = Vector2(15, 15)  # Zoom máximo para la cámara
+var min_zoom = Vector2(2.4, 2.4)  # Zoom mínimo para la cámara
+var max_zoom = Vector2(10, 10)  # Zoom máximo para la cámara
 var max_distance = 600  # Máxima distancia entre los jugadores antes de ajustar el zoom
 
 func _ready():
@@ -34,15 +36,18 @@ func _on_player_out_of_lives(player):
 		restart_game()  # Reinicia el juego al morir el segundo jugador
 	else: 
 		if player == player1:
-			opposing_player = player2
-		elif player == player2:
-			opposing_player = player1
+			opposing_player = player2 # Reaparece el segundo jugador
+		else: 
+			opposing_player = player1  # Reaparece el primer jugador
 		# Activa la cámara del jugador contrario al morir el otro jugador
-		if opposing_player:
-			var player_camera = opposing_player.get_node("Camera2D")
-			if player_camera:
-				player_camera.make_current()  # Hace que esta cámara sea la activa
-
+		
+		opposing_player.respawn_at_checkpoint()  # Reaparece el jugador opuesto
+		
+		 # Activa la cámara del jugador contrario al morir el otro jugador
+		var player_camera = opposing_player.get_node("Camera2D")
+		if player_camera:
+			player_camera.make_current()  # Hace que esta cámara sea la activa
+			
 		# Activa la band de que ya ha sido eliminado 1 jugador
 		player_eliminado = true
 		player.queue_free() # Elimina el nodo del mapa
