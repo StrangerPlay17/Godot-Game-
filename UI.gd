@@ -74,7 +74,7 @@ func checkVictoryCondition():
 	if canvas_layer != null:
 		# Lógica para el tutorial (cambiar de escena con 4 monedas)
 		if coins == 4:
-			get_tree().change_scene_to_file("res://game.tscn")
+			get_tree().change_scene_to_file("res://scenes/victory.tscn")
 	else:
 		# Lógica para el juego principal
 		if collected_coins == total_coins and collected_silver_coins == total_silver_coins and collected_chests == total_chests:
